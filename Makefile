@@ -25,11 +25,17 @@ $(NAME): $(OBJ)
 %.o: %.s
 	$(AS) $@ %^
 
-test:
+test_exe:
 
-bonus:
+test: test_exe
+	./$<
 
-test_bonus:
+test_bonus_exe:
+
+bonus: test_bonus_exe
+	./$<
+
+.PHONY: test bonus
 
 clean:
 	rm $(OBJ)
