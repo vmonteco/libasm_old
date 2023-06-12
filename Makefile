@@ -1,12 +1,13 @@
 NAME =		libasm.a
 AS =		nasm
+CC =		gcc
 
-SRC =		ft_strlen.s \
-			ft_strcpy.s \
-			ft_strcmp.s \
-			ft_write.s \
-			ft_read.s \
-			ft_strdup.s
+SRC =		ft_strlen.s # \
+			# ft_strcpy.s \
+			# ft_strcmp.s \
+			# ft_write.s \
+			# ft_read.s \
+			# ft_strdup.s
 
 BONUS_SRC =	ft_atoi_base.s \
 			ft_list_push_front.s \
@@ -21,11 +22,14 @@ BONUS_OBJ =	$(subst .s,.o,$(BONUS_SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	ar rc $@ $(OBJ)
+	ranlib $@
 
 %.o: %.s
-	$(AS) $@ %^
+	$(AS) -f elf64 -o $@ $^
 
-test_exe:
+test_exe: main.c $(NAME)
+	$(CC) $(CFLAGS) -L. -lasm -o $@ main.c
 
 test: test_exe
 	./$<
