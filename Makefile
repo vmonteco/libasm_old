@@ -2,8 +2,8 @@ NAME =		libasm.a
 AS =		nasm
 CC =		gcc
 
-SRC =		ft_strlen.s # \
-			# ft_strcpy.s \
+SRC =		ft_strlen.s \
+			ft_strcpy.s # \
 			# ft_strcmp.s \
 			# ft_write.s \
 			# ft_read.s \
