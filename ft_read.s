@@ -1,31 +1,19 @@
 ;******************************************************************************;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_strdup.s                                        :+:      :+:    :+:    ;
+;    ft_read.s                                          :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
-;    Created: 2023/06/18 15:46:30 by vmonteco          #+#    #+#              ;
-;    Updated: 2023/07/01 05:07:51 by vmonteco         ###   ########.fr        ;
+;    Created: 2023/07/01 04:42:17 by vmonteco          #+#    #+#              ;
+;    Updated: 2023/07/01 04:52:04 by vmonteco         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
-
 section .text
-	global ft_strdup
-	extern ft_strlen
-	extern ft_strcpy
-	
-.ft_strnew:
-	
-	
-ft_strdup:
-	push	rbx
-	push	rax
-	mov		rbx, rax
-	call	ft_strlen
-	call	.ft_strnew
-	call	ft_strcpy
-	mov		rbx, rax
-	pop		rax
+	global ft_read
+
+ft_read:
+	mov rax, 0
+	syscall
 	ret

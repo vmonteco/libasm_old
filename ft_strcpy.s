@@ -6,9 +6,14 @@
 ;    By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2023/06/12 07:05:00 by vmonteco          #+#    #+#              ;
-;    Updated: 2023/06/12 07:15:00 by vmonteco         ###   ########.fr        ;
+;    Updated: 2023/07/01 04:12:52 by vmonteco         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
+
+
+section .text
+	global ft_strcpy
+	
 
 ft_strcpy:
 	push	rbx				; Push rbx to stack in order to preserve its

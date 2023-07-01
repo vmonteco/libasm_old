@@ -6,9 +6,17 @@
 ;    By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2023/06/12 06:57:23 by vmonteco          #+#    #+#              ;
-;    Updated: 2023/06/12 07:03:22 by vmonteco         ###   ########.fr        ;
+;    Updated: 2023/07/01 03:47:05 by vmonteco         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
+
+section .text
+	global ft_strlen			; Defines the symbol's bind as GLOBAL.
+								; Necessary to make it accessible by other
+								; object files at linking.
+								; Default is LOCAL.
+								; `man 5 elf` or `readelf -WSs objfile.o` to
+								; know more.	
 
 ft_strlen:
 	push	rbx					; Put rbx content into stack in order to
