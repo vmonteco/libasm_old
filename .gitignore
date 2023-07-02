@@ -5,3 +5,4 @@ test_exe
 test_bonus_exe
 en.subject.pdf
 __pycache__/
+libasm.a
