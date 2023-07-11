@@ -2,7 +2,8 @@ NAME =			libasm.a
 NAME_SHARED =	$(subst .a,.so,$(NAME))
 AS =			nasm
 CC =			gcc
-CFLAGS =		-Wall -Werror -Wextra
+ASCLAGS =		-g
+CFLAGS =		-Wall -Werror -Wextra -g
 
 ifeq ($(UNAME_S),Linux)
 	CC_FLAGS=-Wl,--whole-archive
@@ -42,7 +43,7 @@ $(NAME_SHARED): $(NAME)
 
 
 %.o: %.s
-	$(AS) -f elf64 -o $@ $^
+	$(AS) $(ASFLAGS) -f elf64 -o $@ $^
 
 
 test_exe: main.c $(NAME)

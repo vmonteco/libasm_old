@@ -6,7 +6,7 @@
 /*   By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 05:14:14 by vmonteco          #+#    #+#             */
-/*   Updated: 2023/07/01 23:57:34 by vmonteco         ###   ########.fr       */
+/*   Updated: 2023/07/02 16:11:53 by vmonteco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,46 @@ void	test_ft_strlen(void){
 }
 
 
-int		test_ft_strcpy(void)
+void	test_ft_strcpy(void)
 {
 	char	*std;
 	char	*libasm;
 
-	std = strnew(strlen("FOO"));
-	libasm = strnew(strlen("FOO"));
-	
+	/* Empty string case ("") */
+	printf("empty string\n");
+	if ((std = malloc((strlen("FOO") + 1) * sizeof(char))))
+	{
+		strcpy(std, "FOO");
+		printf("FOO-1\n");
+		if ((libasm = malloc((strlen("FOO") + 1) * sizeof(char))))
+		{
+			printf("FOO-2\n");
+			ft_strcpy(libasm, "FOO");
+			printf("FOO-3\n");
+			printf("-ft_strcpy, empty string case (\"\") :\nstrcpy returned %d.\n", strcmp(std, libasm));
+			free(libasm);
+		}
+		free(std);
+	}
+
+	/* Basic case ("FOO") */
+	printf("Basic case");
+	if ((std = malloc((strlen("FOO") + 1) * sizeof(char))))
+	{
+		strcpy(std, "FOO");
+		if ((libasm = malloc((strlen("FOO") + 1) * sizeof(char))))
+		{
+			ft_strcpy(libasm, "FOO");
+			printf("-ft_strcpy, basic case (\"FOO\") :\nstrcpy returned %d.\n", strcmp(std, libasm));
+			free(libasm);
+		}
+		free(std);
+	}
 }
 
 int		main(void)
 {
 	test_ft_strlen();
+	test_ft_strcpy();
 	return (0);
 }
