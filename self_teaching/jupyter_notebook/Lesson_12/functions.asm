@@ -6,7 +6,7 @@
 ;    By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2024/02/10 03:31:04 by vmonteco          #+#    #+#              ;
-;    Updated: 2024/02/18 02:11:03 by vmonteco         ###   ########.fr        ;
+;    Updated: 2024/02/18 14:38:10 by vmonteco         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -116,4 +116,15 @@ _ft_putnumber_end:
 ft_putnumbern:
 	call ft_putnumber
 	call ft_putnewline
+	ret
+
+ft_atoi:
+	push rbx
+	push rsi
+	mov rbx, 0 ; result to put in rax after
+	push rax
+	call ft_strlen
+	mov rsi, rax ; mov strlen result in rsi
+	pop rsi
+	pop rbx
 	ret

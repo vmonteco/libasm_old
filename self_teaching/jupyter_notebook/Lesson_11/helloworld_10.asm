@@ -8,13 +8,13 @@ section .text
 	global _start
 
 _start:
-	mov rsi, 0
+	mov rsi, 1
 
 _loop:
-	cmp rsi, 12
-	je _end ; jz/jnz and je/jne are equivalent. But semantically different.
 	mov rax, rsi
-	call ft_putnumber
+	call ft_putnumbern
+ 	cmp rsi, 9999999
+	je _end ; jz/jnz and je/jne are equivalent. But semantically different.
 	inc rsi
 	jmp _loop
 
