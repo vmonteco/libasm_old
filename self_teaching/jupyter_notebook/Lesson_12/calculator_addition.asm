@@ -11,31 +11,31 @@
 ;******************************************************************************;
 
 	%include 'functions.asm'
-	
 	section .data
-
+	msg db "Result :"
 	section .bss
 
 	section .text
 	global _start
 	
 _start:
-	pop rax
-	mov rsi, rax
-	mov rax, 0
+	pop rsi
+	mov rbx, 0					; that will be our sum
 	
 _loop:
 	cmp rsi, 0
 	jz _end
-	pop rbx
-	push rax
-	mov rax, rbx
-	call ft_atoi
-	pop rbx
+	pop rax
+	call ft_putstrn
+	;; call ft_atoi
 	add rax, rbx
+	mov rbx, rax
 	dec rsi
-	jmp _loop
-	
+	jmp _loop	
+
 _end:	
+	mov rax, msg
+	call ft_putstrn
+	mov rax, rbx
 	call ft_putnumbern
 	call ft_exit

@@ -119,12 +119,33 @@ ft_putnumbern:
 	ret
 
 ft_atoi:
-	push rbx
-	push rsi
-	mov rbx, 0 ; result to put in rax after
-	push rax
-	call ft_strlen
-	mov rsi, rax ; mov strlen result in rsi
+	;; pushes here
+	push rbx					; rbx will contain the str
+	push rcx					; rcx will contain the multiplier
+	push rdx					; rdx will contain the counter
+	push rsi					; rsi will be used as a counter
+	
+	;; get ft_strlen
+	mov rbx, rax		   ; Put str in rbx
+	call ft_strlen				; strlen now in rax
+	mov rsi, rax				; put strlen in rsi
+	mov rdx, 0					; future counter
+	mov rcx, 10
+	mov rax, 0					; rax will contain the result
+	
+_ft_atoi_loop:
+	cmp rsi, rdx
+	je _ft_atoi_end
+	mul rcx
+	add rax, [rbx+rdx]
+	sub rax, 48
+	inc rdx
+	jmp _ft_atoi_loop
+		
+_ft_atoi_end:	
+	;; pops here
 	pop rsi
+	pop rdx
+	pop rcx
 	pop rbx
 	ret
