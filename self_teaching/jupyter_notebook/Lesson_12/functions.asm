@@ -6,7 +6,7 @@
 ;    By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2024/02/10 03:31:04 by vmonteco          #+#    #+#              ;
-;    Updated: 2024/02/18 14:38:10 by vmonteco         ###   ########.fr        ;
+;    Updated: 2024/02/19 15:31:40 by vmonteco         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -118,32 +118,52 @@ ft_putnumbern:
 	call ft_putnewline
 	ret
 
+
 ft_atoi:
-	;; pushes here
-	push rbx					; rbx will contain the str
-	push rcx					; rcx will contain the multiplier
-	push rdx					; rdx will contain the counter
-	push rsi					; rsi will be used as a counter
+	;; Pushes hrere
+	;; rax will contain the result but contains the str to atoi now.
+	;; So no push required
+	;; rbx will contain the str
+	push rbx
+	;; rcx will contain the multiplier (10)
+	push rcx
+	;; rdx will be overriden at some point
+	push rdx
+	;; rsi will contain strlen
+	push rsi
+	;; rdi will contain the counter
+	push rdi
 	
-	;; get ft_strlen
-	mov rbx, rax		   ; Put str in rbx
-	call ft_strlen				; strlen now in rax
-	mov rsi, rax				; put strlen in rsi
-	mov rdx, 0					; future counter
+	;; put str in rbx
+	mov rbx, rax
+	
+	;; get strlen
+	call ft_strlen
+	;; put strlen in rsi
+	mov rsi, rax
+	;; init counter
+	mov rdi, 0
+	;; init result
+	mov rax, 0
+	;; set multiplier
 	mov rcx, 10
-	mov rax, 0					; rax will contain the result
-	
+
 _ft_atoi_loop:
-	cmp rsi, rdx
+	cmp rsi, rdi
 	je _ft_atoi_end
+
+	;; multiply current result by 10
 	mul rcx
-	add rax, [rbx+rdx]
+	;; Add current digit (substract 48)
+	add al, [rbx+rdi]
+
 	sub rax, 48
-	inc rdx
+	
+	inc rdi
 	jmp _ft_atoi_loop
-		
-_ft_atoi_end:	
-	;; pops here
+	
+_ft_atoi_end:
+	pop rdi
 	pop rsi
 	pop rdx
 	pop rcx
