@@ -6,7 +6,7 @@
 ;    By: vmonteco </var/spool/mail/vmonteco>        +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2024/02/10 03:31:04 by vmonteco          #+#    #+#              ;
-;    Updated: 2024/02/19 15:31:40 by vmonteco         ###   ########.fr        ;
+;    Updated: 2024/02/20 00:03:50 by vmonteco         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -169,3 +169,13 @@ _ft_atoi_end:
 	pop rcx
 	pop rbx
 	ret
+
+	;; Todo after Jester's CR :
+	;; - ft_strlen is useless. Just increment the address and stop at 0 byte
+	;; - risk of overflow : put digit in a zeroed 64bits reg before adding.
+	;; - "Namely xor affects flags but mov doesn't
+	;; - "As per calling convention only rbx needs to be preserved so you can get rid of all the other pushes/pop
+	;; - "Since you are doing a 64bits conversion, you can use `imul rax, rax, 10` instead of the `mul rcx`.
+	;; - xor slightly quicker, is shorter than mov 0
+	;; - Make it signed.
+	;; 
